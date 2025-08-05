@@ -1,4 +1,6 @@
+import org.example.TaskData;
 import org.example.entity.*;
+import org.example.entity.Task;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -10,6 +12,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.instanceOf;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -27,11 +30,11 @@ public class MainTest {
     @BeforeEach
     void setUp() {
         task1 = new Task("Java Collections", "Write List Interface",
-                "Ann", Status.IN_QUEUE, Priority.LOW);
+                        "Ann", Priority.LOW, Status.IN_QUEUE);
         task2 = new Task("Java Collections", "Write Set Interface",
-                "Ann", Status.ASSIGNED, Priority.MED);
+                        "Ann", Priority.MED, Status.ASSIGNED);
         task3 = new Task("Java Collections", "Write Map Interface",
-                "Bob", Status.IN_QUEUE, Priority.HIGH);
+                        "Bob", Priority.HIGH, Status.IN_QUEUE);
 
         taskSet1 = new HashSet<>();
         taskSet1.add(task1);
@@ -103,7 +106,7 @@ public class MainTest {
         assertEquals(totals.size(), 2);
     }
 
-    @DisplayName("TaskData getIntersect() method doğru çalışıyor mu ?")
+    @DisplayName("TaskData getIntersection() method doğru çalışıyor mu ?")
     @Test
     public void testGetIntersectMethod() throws NoSuchFieldException {
         Set<Task> taskSet = new HashSet<>();
@@ -121,7 +124,7 @@ public class MainTest {
         assertEquals(intersections.size(), 1);
     }
 
-    @DisplayName("TaskData getDifference() method doğru çalışıyor mu ?")
+    @DisplayName("TaskData getDifferences() method doğru çalışıyor mu ?")
     @Test
     public void testGetDifferenceMethod() throws NoSuchFieldException {
         Set<Task> taskSet = new HashSet<>();
@@ -142,10 +145,10 @@ public class MainTest {
     @DisplayName("findUniqueWords doğru çalışıyor mu ?")
     @Test
     public void testFindUniqueWordsMethod() {
-        assertEquals(StringSet.findUniqueWords().size(), 143);
+        assertEquals(StringSet.findUniqueWords().size(), 149);
 
         List<String> results = StringSet.findUniqueWords().stream().collect(Collectors.toList());
-        assertEquals(results.get(0), "a");
+        assertEquals(results.get(0), "1863");
         assertEquals(results.get(results.size()-1), "wrote");
 
     }
